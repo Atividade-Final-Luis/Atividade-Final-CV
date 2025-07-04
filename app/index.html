@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>LoginApp</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label for="username">Usuário:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <button type="submit">Entrar</button>
+  </form>
+  <p id="result"></p>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = form.username.value;
+      const pass = form.password.value;
+
+      if (user === "admin" && pass === "123456") {
+        document.getElementById('result').innerText = "Login bem-sucedido!";
+      } else {
+        document.getElementById('result').innerText = "Credenciais inválidas.";
+      }
+    });
+  </script>
+</body>
+</html>
