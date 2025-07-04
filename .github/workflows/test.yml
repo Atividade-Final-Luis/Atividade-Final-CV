@@ -19,3 +19,11 @@ jobs:
     - name: Executar Testes Robot
       run: robot tests/
 
+    - name: Instalar Python e Dependências
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-chromedriver
+        pip install robotframework
+        pip install robotframework-seleniumlibrary
+        pip install selenium
+
