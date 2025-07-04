@@ -8,7 +8,7 @@ ${EXECUTABLE_PATH}    /usr/bin/chromium-browser
 
 *** Keywords ***
 Abrir Página de Login
-    Open Browser    ${URL}    ${BROWSER}    executable_path=${EXECUTABLE_PATH}
+    Open Browser    ${URL}    chrome
     Maximize Browser Window
 
 Inserir Usuário E Senha Corretos
