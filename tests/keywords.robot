@@ -4,11 +4,10 @@ Library    SeleniumLibrary
 *** Variables ***
 ${URL}       http://localhost:5000
 ${BROWSER}   chrome
-${EXECUTABLE_PATH}    /usr/bin/chromium-browser
 
 *** Keywords ***
 Abrir Página de Login
-    Open Browser    ${URL}    chrome
+    Open Browser    ${URL}    ${BROWSER}
     Maximize Browser Window
 
 Inserir Usuário E Senha Corretos
