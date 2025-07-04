@@ -10,16 +10,23 @@ jobs:
     - name: Clonar Repositório
       uses: actions/checkout@v3
 
-    - name: Instalar Google Chrome e dependências
+    - name: Instalar dependências
       run: |
         sudo apt-get update
-        sudo apt-get install -y wget curl gnupg unzip
+        sudo apt-get install -y wget curl unzip
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo apt install -y ./google-chrome-stable_current_amd64.deb
         pip install --upgrade pip
+        pip install flask
         pip install robotframework
         pip install robotframework-seleniumlibrary
         pip install selenium
 
+    - name: Subir servidor Flask
+      run: |
+        nohup python3 app.py > flask.log 2>&1 &
+        sleep 5
+
     - name: Executar Testes Robot
       run: robot tests/
+
