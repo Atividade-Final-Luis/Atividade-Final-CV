@@ -2,12 +2,13 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-${URL}    file:///absolute/caminho/para/LoginApp/app/index.html
-${BROWSER}    chrome
+${URL}       http://localhost:5000
+${BROWSER}   chrome
+${EXECUTABLE_PATH}    /usr/bin/chromium-browser
 
 *** Keywords ***
 Abrir Página de Login
-    Open Browser    ${URL}    ${BROWSER}
+    Open Browser    ${URL}    ${BROWSER}    executable_path=${EXECUTABLE_PATH}
     Maximize Browser Window
 
 Inserir Usuário E Senha Corretos
@@ -16,8 +17,8 @@ Inserir Usuário E Senha Corretos
     Click Button    Entrar
 
 Inserir Usuário E Senha Incorretos
-    Input Text    id=username    usuario
-    Input Text    id=password    senhaerrada
+    Input Text    id=username    user
+    Input Text    id=password    errado
     Click Button    Entrar
 
 Verificar Mensagem De Sucesso
