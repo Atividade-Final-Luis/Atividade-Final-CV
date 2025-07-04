@@ -1,56 +1,32 @@
-name: Robot Framework Tests
+*** Settings ***
+Library    SeleniumLibrary
 
-on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
+*** Variables ***
+${URL}       http://localhost:5000
+${BROWSER}   chrome
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
+*** Keywords ***
+Abrir Página de Login
+    Open Browser    ${URL}    ${BROWSER}
+    ...    options=add_argument("--no-sandbox")
+    ...    options=add_argument("--disable-dev-shm-usage")
+    ...    options=add_argument("--headless")
+    Maximize Browser Window
 
-    steps:
-    
-name: Checkout code
-    uses: actions/checkout@v4
+Inserir Usuário E Senha Corretos
+    Input Text    id=username    admin
+    Input Text    id=password    123456
+    Click Button    Entrar
 
-    
-name: Set up Python
-    uses: actions/setup-python@v5
-    with:
-      python-version: '3.11'
+Inserir Usuário E Senha Incorretos
+    Input Text    id=username    user
+    Input Text    id=password    errado
+    Click Button    Entrar
 
-    
-name: Install Chrome browser
-    run: |
-      sudo apt-get update
-      sudo apt-get install -y google-chrome-stable
-      google-chrome --version
+Verificar Mensagem De Sucesso
+    Element Text Should Be    id=result    Login bem-sucedido!
+    Close Browser
 
-    
-name: Install ChromeDriver
-    run: |
-      LATEST_CHROMEDRIVER=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-      wget https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER/chromedriver_linux64.zip
-      unzip chromedriver_linux64.zip
-      sudo mv chromedriver /usr/local/bin/
-      sudo chmod +x /usr/local/bin/chromedriver
-      chromedriver --version
-name: Install Python dependencies
-run: |
-  pip install --upgrade pip
-  pip install -r requirements.txt
-name: Start services
-run: |
-  Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-  nohup python app.py > flask.log 2>&1 &
-  sleep 5
-
-    
-name: Upload reports
-    if: always()
-    uses: actions/upload-artifact@v4
-    with:
-      name: robot-reports
-      path: |./report.html./log.html./output.xml
+Verificar Mensagem De Erro
+    Element Text Should Be    id=result    Credenciais inválidas.
+    Close Browser
