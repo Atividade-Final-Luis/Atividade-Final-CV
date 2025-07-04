@@ -24,7 +24,7 @@ Inserir Usuário E Senha Incorretos
     Click Button    Entrar
 
 Verificar Mensagem De Sucesso
-    Element Text Should Be    id=result    Login bem-sucedido!
+    Wait Until Page Contains    Bem-vindo à Dashboard!    timeout=5s
     Close Browser
 
 Verificar Mensagem De Erro
