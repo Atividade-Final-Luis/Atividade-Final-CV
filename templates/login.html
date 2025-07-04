@@ -5,9 +5,6 @@
 </head>
 <body>
     <h2>Login</h2>
-    {% if erro %}
-        <p style="color: red;">{{ erro }}</p>
-    {% endif %}
     <form method="POST">
         <label for="username">Usuário:</label>
         <input type="text" id="username" name="username"><br><br>
@@ -15,6 +12,11 @@
         <input type="password" id="password" name="password"><br><br>
         <button type="submit">Entrar</button>
     </form>
-    <p id="result"></p>
+
+    <p id="result">
+        {% if erro %}
+            {{ erro }}
+        {% endif %}
+    </p>
 </body>
 </html>
