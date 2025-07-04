@@ -25,8 +25,7 @@ jobs:
     - name: Subir servidor Flask
       run: |
         nohup python3 app.py > flask.log 2>&1 &
-        sleep 5
+        sleep 10
 
     - name: Executar Testes Robot
       run: robot tests/
-
