@@ -8,6 +8,9 @@ ${BROWSER}   chrome
 *** Keywords ***
 Abrir Página de Login
     Open Browser    ${URL}    ${BROWSER}
+    ...    options=add_argument(--no-sandbox)
+    ...    options=add_argument(--disable-dev-shm-usage)
+    ...    options=add_argument(--headless=new)
     Maximize Browser Window
 
 Inserir Usuário E Senha Corretos
