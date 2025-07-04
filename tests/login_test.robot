@@ -1,6 +1,6 @@
 *** Settings ***
-Library    SeleniumLibrary
-Resource   keywords.robot
+Library           SeleniumLibrary
+Resource          keywords.robot
 
 *** Test Cases ***
 Login Com Sucesso
