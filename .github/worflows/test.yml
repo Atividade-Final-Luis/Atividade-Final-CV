@@ -1,0 +1,19 @@
+name: Testes Automatizados
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar Repositório
+        uses: actions/checkout@v3
+
+      - name: Instalar Python e Dependências
+        run: |
+          sudo apt update
+          sudo apt install -y chromium-chromedriver
+          pip install robotframework selenium
+
+      - name: Executar Testes Robot
+        run: robot tests/
