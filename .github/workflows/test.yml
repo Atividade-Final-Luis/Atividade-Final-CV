@@ -10,9 +10,12 @@ jobs:
     - name: Clonar Repositório
       uses: actions/checkout@v3
 
-    - name: Instalar Python e Dependências
+    - name: Instalar Google Chrome e dependências
       run: |
         sudo apt-get update
+        sudo apt-get install -y wget unzip
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt install -y ./google-chrome-stable_current_amd64.deb
         sudo apt-get install -y chromium-chromedriver
         pip install --upgrade pip
         pip install robotframework
